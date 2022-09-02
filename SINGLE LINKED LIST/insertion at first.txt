@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+struct node {
+    int data;
+    struct node *next;
+}*head=NULL,*p1,*p2,*ptr;
+int main()
+{
+    int n;
+    cout<<"Enter the size of linked list";
+    cin>>n;
+    int value;
+    while(n--){
+        cin>>value;
+        p1=new node;
+        p1->data=value;
+        p1->next=NULL;
+        if(head==NULL)
+            head=p1;
+        else
+        {
+            ptr=head;
+            p1->next=ptr;
+            head=p1;
+        }
+    }
+    p2=head;
+    while(p2!=NULL)
+    {
+        cout<<p2->data<<" ";
+        p2=p2->next;
+    }
+    return 0;
+} 
