@@ -1,6 +1,6 @@
 # DSA-Linked-Lists
 
-## This repostiory contains different codes on operations that can be perform on singly linked lists as well as double linked lists.
+## This repostiory contains different codes on operations that can be perform on singly linked lists, doubly linked lists as well as circular linked lists.
 ### The different operations that can be performed on linked lists are:
 * Traversing through the list
 * Printing the list in reverse manner
