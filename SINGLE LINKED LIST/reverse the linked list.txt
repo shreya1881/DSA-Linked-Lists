@@ -1,0 +1,99 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+typedef struct LinkedListNode LinkedListNode;
+
+struct LinkedListNode {
+    int val;
+    LinkedListNode *next;
+};
+
+LinkedListNode* _insert_node_into_singlylinkedlist(LinkedListNode *head, LinkedListNode *tail, int val) {
+    if(head == NULL) {
+        head = (LinkedListNode *) (malloc(sizeof(LinkedListNode)));
+        head->val = val;
+        head->next = NULL;
+        tail = head;
+    }
+    else {
+        LinkedListNode *node = (LinkedListNode *) (malloc(sizeof(LinkedListNode)));
+        node->val = val;
+        node->next = NULL;
+        tail->next = node;
+        tail = tail->next;
+    }
+    return tail;
+}
+
+//BODY STARTS HERE
+
+
+/*
+ * Complete the function below.
+ */
+/*
+For your reference:
+LinkedListNode {
+    int val;
+    LinkedListNode *next;
+};
+*/
+LinkedListNode* Reverse(LinkedListNode* head) {
+LinkedListNode *p1,*p2,*p3;
+        p1=head;
+        p2=NULL;
+        p3=NULL;
+        while(p1!=NULL)
+        {
+            
+            p2=p1;
+            p1=p1->next;
+            p2->next=p3;
+            p3=p2;
+        }
+        head=p2;
+    return head;
+}
+
+//BODY ENDS HERE
+
+int main()
+{
+    FILE *f = stdout;
+    char *output_path = getenv("OUTPUT_PATH");
+    if (output_path) {
+        f = fopen(output_path, "w");
+    }
+
+    LinkedListNode* res;
+    int head_size = 0;
+
+    LinkedListNode* head = NULL;
+    LinkedListNode* head_tail = NULL;
+
+    scanf("%d\n", &head_size);
+    for(int i = 0; i < head_size; i++) {
+        int head_item;
+        scanf("%d", &head_item);
+        head_tail = _insert_node_into_singlylinkedlist(head, head_tail, head_item);
+
+        if(i == 0) {
+            head = head_tail;
+        }
+    }
+
+
+    res = Reverse(head);
+    while (res != NULL) {
+        fprintf(f, "%d ", res->val);
+
+        res = res->next;
+    }
+
+    fclose(f);
+    return 0;
+}
