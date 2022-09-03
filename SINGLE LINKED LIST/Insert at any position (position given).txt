@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+}*head,*p1,*p2,*p3;
+
+void insertatanyposition(int pos,int a)
+{
+    struct node *nn=(struct node *)malloc(sizeof(struct node));
+    nn->data=a;
+    nn->next=NULL;
+
+    if(pos==0)
+    {
+        nn->next=head;
+        head=nn;
+    }
+    else{
+        p1=head;
+        while(pos>1)
+        {
+            p1=p1->next;
+            pos--;
+        }
+        p2=p1->next;
+        p1->next=nn;
+        nn->next=p2;
+    }
+}
+int main() {
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int pos,a;
+        scanf("%d %d",&pos,&a);
+        insertatanyposition(pos,a);
+    }
+    p3=head;
+    while(p3!=NULL)
+    {
+        printf("%d",p3->data);
+        if(p3->next!=NULL)
+            printf("->");
+        p3=p3->next;
+    }
+    return 0;
+}
