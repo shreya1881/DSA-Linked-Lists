@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node* next;
+}*head;
+
+void insertend(int a)
+{
+    struct node *p=(struct node*)malloc(sizeof(struct node));
+    struct node *p1;
+    p->data=a;
+    p->next=NULL;
+    if(head==NULL)
+        head=p;
+    else
+    {
+        p1=head;
+        while(p1->next!=NULL)
+            p1=p1->next;
+        p1->next=p;
+    }
+}
+
+void deleteany(int pos)
+{
+    struct node* t;
+    struct node *p;
+    p=head;
+    while(pos>1)
+    {
+        p=p->next;
+        pos--;
+    }
+    t=p->next;
+    p->next=t->next;
+    free(t);
+}
+int main() {
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int a;
+        scanf("%d",&a);
+        insertend(a);
+    }
+    int pos;
+    scanf("%d",&pos);
+    deleteany(pos);
+    struct node *p3;
+    p3=head;
+    while(p3!=NULL)
+    {
+        printf("%d",p3->data);
+        if(p3->next!=NULL)
+            printf("->");
+        p3=p3->next;
+        
+    }
+    return 0;
+}
